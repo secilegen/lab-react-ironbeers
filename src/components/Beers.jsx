@@ -1,6 +1,7 @@
 import Header from "./Header"
 import axios from 'axios'
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
 function Beers(){
     const [beers, setBeers] = useState([])
@@ -18,11 +19,14 @@ function Beers(){
 
     return(
         <div>
+            <Header/>
+            
         {beers.map((beer)=>{
             return(
+                
                 <div key={beer._id} className='individualBeer'>
                 <img src={beer.image_url} alt={beer.name} />
-                <h3>{beer.name}</h3>
+                <Link to={`/beers/${beer._id}`}><h3>{beer.name}</h3></Link>
                 <p>{beer.tagline}</p>
                 <p>Created by: {beer.contributed_by}</p>
                 </div>
